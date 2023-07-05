@@ -1,4 +1,4 @@
-![AirBnB Holberton Taieb](https://github.com/v-dav/holbertonschool-AirBnB_clone/assets/115344057/ba8e5d85-5f2f-4bd9-967d-832dd14b7215)
+![AirBnB Clone Holberton Taieb](https://github.com/v-dav/holbertonschool-AirBnB_clone/assets/115344057/c3200352-a0fa-4f20-a04e-e2c80c34bfa3)
 
 
 # :mortar_board: AirBNB Clone Project
