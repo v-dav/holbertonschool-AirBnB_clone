@@ -1,6 +1,7 @@
 #!/usr/bin/python3
+"""A test module for the BaseModel class"""
+
 import unittest
-import uuid
 from datetime import datetime
 from models.base_model import BaseModel
 
@@ -36,7 +37,3 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(model_dict["id"], self.my_model.id)
         self.assertIsInstance(model_dict["created_at"], str)
         self.assertIsInstance(model_dict["updated_at"], str)
-
-
-if __name__ == '__main__':
-    unittest.main()
