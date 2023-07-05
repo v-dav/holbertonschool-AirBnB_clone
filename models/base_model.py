@@ -7,6 +7,7 @@ methods: save() and to_json()"""
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """defines all common attributes/methods for other classes"""
     def __init__(self, *args, **kwargs):
@@ -27,7 +28,7 @@ class BaseModel:
         """representation of the instance"""
         return "[{}] ({}) {}".format(
             type(self).__name__, self.id, self.__dict__)
-    
+
     def save(self):
         """updates the public instance attribute"""
         self.updated_at = datetime.now()
