@@ -7,7 +7,19 @@ The learning aims of this project is to consolidate our knowledge and skills in 
 
 This project doesn' implement all the AirBNB features, only some of them to cover all fundamental concepts of the higher level programming track.
 
-## Web Application Components: :gear:
+## Detailed Learning Objectives :mortar_board:
+- How to create a Python package
+- How to create a command interpreter in Python using the cmd module
+- What is Unit testing and how to implement it in a large project
+- How to serialize and deserialize a Class
+- How to write and read a JSON file
+- How to manage datetime
+- What is an UUID
+- What is *args and how to use it
+- What is **kwargs and how to use it
+- How to handle named arguments in a function
+
+## Web Application Components :gear:
 - A command interpreter to manipulate data without a visual interface, like in a Shell (perfect for development and debugging). Allows to:
 	- create your data model
 	- manage (create, update, destroy, etc) objects via a console / command interpreter
