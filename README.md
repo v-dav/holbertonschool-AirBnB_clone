@@ -1,3 +1,6 @@
+![AirBnB Holberton Taieb](https://github.com/v-dav/holbertonschool-AirBnB_clone/assets/115344057/ba8e5d85-5f2f-4bd9-967d-832dd14b7215)
+
+
 # :mortar_board: AirBNB Clone Project
 
 A first full Web Application group project at Holberton School. The goal of the project is to deploy on our server a simple copy of the AirBnB website.
