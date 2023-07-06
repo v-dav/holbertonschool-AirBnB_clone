@@ -17,6 +17,8 @@ class BaseModel:
             kwargs (dict): a dictionary with instance attribute names and
                 values
         """
+        from engine.file_storage import FileStorage
+        from __init__ import storage
 
         if kwargs:
             for key, value in kwargs.items():
@@ -29,6 +31,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
+            storage.new(self)
 
     def __str__(self):
         """Public instance method for human readable
@@ -41,8 +44,12 @@ class BaseModel:
 
     def save(self):
         """Public instance method that updates
-        the public instance attribute."""
+        the public instance attribute and saves the object to JSON file"""
 
+        from engine.file_storage import FileStorage
+        from __init__ import storage
+
+        storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):
