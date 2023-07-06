@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""FileStorage instance for application"""
+"""FileStorage instance for the application"""
+
 from models.engine.file_storage import FileStorage
 
 

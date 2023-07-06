@@ -1,19 +1,21 @@
 #!/usr/bin/python3
-"""Module for BaseModel"""
+"""A Module for BaseModel class"""
+
 import uuid
 from datetime import datetime
 from models import storage
 
 
 class BaseModel:
-    """Class Base : The "base” of all other classes"""
+    """A BaseModel Class : The "base” of all other classes"""
 
     def __init__(self, *args, **kwargs):
-        """Initialize a new Base
+        """Initialize a new BaseModel object with id and
+        time it was created and updated by default or with a
+        dictionary containing attributes.
 
         Args:
-            id (int): The identity of the new Base
-            *args (ints): New attribute values
+            *args (tuple): New attribute values
             **kwargs (dict): New attribute values
         """
         if not kwargs:
@@ -29,17 +31,22 @@ class BaseModel:
                     setattr(self, k, v)
 
     def __str__(self):
-        """Return description of the class"""
+        """Returns human-readable description of the object"""
+
         return ("[{}] ({}) {}".format(type(self).__name__,
                 self.id, self.__dict__))
 
     def save(self):
-        """Updates attribute with the current datetime"""
+        """Updates attributes with the current datetime and
+        writes the object as JSON representation in a file"""
+
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """Returns the dictionary representation with modified keywords"""
+        """Returns the dictionary representation with additional
+        and formatted attrbutes"""
+
         my_dict = self.__dict__.copy()
         my_dict["__class__"] = self.__class__.__name__
         my_dict["created_at"] = self.created_at.isoformat()

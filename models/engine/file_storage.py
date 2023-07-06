@@ -1,28 +1,42 @@
 #!/usr/bin/python3
-"""Module for FileStorage"""
+"""A Module for FileStorage class"""
+
 import json
 import os
 
 
 class FileStorage:
-    """Class FileStorage :
+    """A FileStorage Class :
     Serializes instances to a JSON file and deserializes
     JSON file to instances.
+
+    Attributes:
+        __file_path (str): a path to a JSON file where the object
+            representations will be saved and reloaded from.
+        __objects (dict): a dictionary containing all object
+            representations.
     """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """Returns the dictionary __objects"""
+        """A method that returns the dictionary __objects"""
         return self.__objects
 
     def new(self, obj):
-        """Sets in __objects the obj with key <obj class name>.id"""
+        """A method that sets in __objects the obj with key <obj class name>.id
+
+        Args:
+            obj (obj): an object of a given class
+        """
+
         key = type(obj).__name__ + "." + obj.id
         self.__objects[key] = obj
 
     def save(self):
-        """Serializes __objects to the JSON file (path: __file_path)"""
+        """A method that serializes __objects to the JSON file
+        (path: __file_path)"""
+
         new_dict = {}
         for key, value in self.__objects.items():
             new_dict[key] = value.to_dict()
@@ -30,7 +44,7 @@ class FileStorage:
             json.dump(new_dict, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects"""
+        """Deserializes the JSON file to __objects"""
         from models import base_model
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as input_file:
