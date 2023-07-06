@@ -17,8 +17,8 @@ class BaseModel:
             kwargs (dict): a dictionary with instance attribute names and
                 values
         """
-        from engine.file_storage import FileStorage
-        from __init__ import storage
+        from models.engine.file_storage import FileStorage
+        from models.__init__ import storage
 
         if kwargs:
             for key, value in kwargs.items():
@@ -46,8 +46,8 @@ class BaseModel:
         """Public instance method that updates
         the public instance attribute and saves the object to JSON file"""
 
-        from engine.file_storage import FileStorage
-        from __init__ import storage
+        from models.engine.file_storage import FileStorage
+        from models.__init__ import storage
 
         self.updated_at = datetime.now()
         storage.save()
