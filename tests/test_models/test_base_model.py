@@ -14,7 +14,7 @@ import json
 
 class TestBaseModel(unittest.TestCase):
     """Class test BaseModel"""
-    
+
     def test_id(self):
         """ test of id attribute """
         self.base = BaseModel()
