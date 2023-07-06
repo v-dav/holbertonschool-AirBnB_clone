@@ -19,6 +19,19 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.my_model.created_at, datetime)
         self.assertIsInstance(self.my_model.updated_at, datetime)
 
+        """Test with kwargs dict"""
+        instance_dict = {'id': '56d43177-cc5f-4d6c-a0c1-e167f8c27337',
+                         'created_at': '2017-09-28T21:03:54.052298',
+                         '__class__': 'BaseModel', 'my_number': 89,
+                         'updated_at': '2017-09-28T21:03:54.052302',
+                         'name': 'My_First_Model'}
+
+        self.my_model2 = BaseModel(instance_dict)
+        self.assertTrue(isinstance(self.my_model2, BaseModel))
+        self.assertIsInstance(self.my_model2.id, str)
+        self.assertIsInstance(self.my_model2.created_at, datetime)
+        self.assertIsInstance(self.my_model2.updated_at, datetime)
+
     def test_str(self):
         """Test for str method"""
         self.assertEqual(str(self.my_model), f"[BaseModel]\
