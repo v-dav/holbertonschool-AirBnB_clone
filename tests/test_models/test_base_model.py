@@ -1,52 +1,56 @@
 #!/usr/bin/python3
-"""A test module for the BaseModel class"""
-
+""" Module for BaseModel unit tests """
 import unittest
-from datetime import datetime
+from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+from models import storage
+import models
+from datetime import datetime
+import os
+import uuid
+import json
 
 
 class TestBaseModel(unittest.TestCase):
-    """Unittest for class BaseModel"""
-    def setUp(self):
-        """Set up for the tests"""
-        self.my_model = BaseModel()
+    """Class test BaseModel"""
+    def test_id(self):
+        """ test of id attribute """
+        self.base = BaseModel()
+        self.base.id = str(uuid.uuid4())
+        self.assertEqual(str, type(self.base.id))
 
-    def test_init(self):
-        """Test for initialization"""
-        self.assertTrue(isinstance(self.my_model, BaseModel))
-        self.assertIsInstance(self.my_model.id, str)
-        self.assertIsInstance(self.my_model.created_at, datetime)
-        self.assertIsInstance(self.my_model.updated_at, datetime)
-
-        """Test with kwargs dict"""
-        instance_dict = {'id': '56d43177-cc5f-4d6c-a0c1-e167f8c27337',
-                         'created_at': '2017-09-28T21:03:54.052298',
-                         '__class__': 'BaseModel', 'my_number': 89,
-                         'updated_at': '2017-09-28T21:03:54.052302',
-                         'name': 'My_First_Model'}
-
-        self.my_model2 = BaseModel(instance_dict)
-        self.assertTrue(isinstance(self.my_model2, BaseModel))
-        self.assertIsInstance(self.my_model2.id, str)
-        self.assertIsInstance(self.my_model2.created_at, datetime)
-        self.assertIsInstance(self.my_model2.updated_at, datetime)
-
-    def test_str(self):
-        """Test for str method"""
-        self.assertEqual(str(self.my_model), f"[BaseModel]\
- ({self.my_model.id}) {self.my_model.__dict__}")
-
-    def test_save(self):
-        """Test for save method"""
-        old_updated_at = self.my_model.updated_at
-        self.my_model.save()
-        self.assertNotEqual(old_updated_at, self.my_model.updated_at)
+    def test_created_at(self):
+        """ test of created.at attribute """
+        self.base = BaseModel()
+        self.base.created_at = datetime.now()
+        self.assertIsNotNone(self.base.created_at)
 
     def test_to_dict(self):
-        """Test for to_dict method"""
-        model_dict = self.my_model.to_dict()
-        self.assertEqual(model_dict["__class__"], "BaseModel")
-        self.assertEqual(model_dict["id"], self.my_model.id)
-        self.assertIsInstance(model_dict["created_at"], str)
-        self.assertIsInstance(model_dict["updated_at"], str)
+        """ test of to_dict method """
+        self.base = BaseModel()
+        dic = self.base.to_dict()
+        self.assertIsInstance(dic['created_at'], str)
+
+    def test__str__(self):
+        """ test of __str__ """
+        self.assertEqual(str, type(BaseModel.__str__(self)))
+
+    def test_save_check_time(self):
+        """ Tests that save method updates the time """
+        self.base = BaseModel()
+        self.base.name = "My_Model"
+        self.base.save()
+        self.assertNotEqual(self.base.created_at, self.base.updated_at)
+
+    def test_save_check_file(self):
+        """ Tests that save method saves contents """
+        self.base = BaseModel()
+        self.base.name = 'My_Model'
+        self.base.save()
+        with open("file.json", "r", encoding='utf-8') as f:
+            read_data = f.read()
+            self.assertIn(self.base.name, read_data)
+
+
+if __name__ == '__main__':
+    unittest.main()

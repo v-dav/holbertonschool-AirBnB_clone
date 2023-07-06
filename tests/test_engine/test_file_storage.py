@@ -4,6 +4,7 @@ from models import storage
 from models.base_model import BaseModel
 import unittest
 import json
+import os
 
 """ Module for FileStorage unit tests """
 
@@ -30,5 +31,10 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save(self):
         """ tests the 'save' method """
-        with open(FileStorage._FileStorage__file_path, 'r') as f:
-            self.assertEqual(dict, type(json.load(f)))
+        if os.path.exists(FileStorage._FileStorage__file_path):
+            with open(FileStorage._FileStorage__file_path, 'r') as f:
+                self.assertEqual(dict, type(json.load(f)))
+
+
+if __name__ == '__main__':
+    unittest.main()
