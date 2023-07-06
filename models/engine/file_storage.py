@@ -7,7 +7,7 @@ import os
 class FileStorage:
     """Class FileStorage :
     Serializes instances to a JSON file and deserializes
-    JSON file to instance.
+    JSON file to instances.
     """
     __file_path = "file.json"
     __objects = {}
@@ -35,9 +35,15 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as input_file:
                 jsoned_obj = {}
-                jsoned_obj = json.load(input_file)
+                try:
+                    jsoned_obj = json.load(input_file)
+                except json.JSONDecodeError:
+                    pass
                 for key, value in jsoned_obj.items():
                     class_name = value['__class__']
                     class_obj = getattr(base_model, class_name)
+
                     obj = class_obj(**value)
                     self.__objects[key] = obj
+        else:
+            pass
