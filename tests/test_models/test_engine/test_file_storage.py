@@ -1,12 +1,12 @@
 #!/usr/bin/python3
+""" Module for FileStorage unit tests """
+
 from models.engine.file_storage import FileStorage
 from models import storage
 from models.base_model import BaseModel
 import pycodestyle
 import unittest
 import json
-
-""" Module for FileStorage unit tests """
 
 
 class TestFileStorage(unittest.TestCase):
@@ -35,7 +35,7 @@ class TestFileStorage(unittest.TestCase):
             self.assertEqual(dict, type(json.load(f)))
 
     def test_pep8_conformance(self):
-        """Test that we conform to PEP8."""
+        """Test that we conform to Pycodestyle."""
         pep8style = pycodestyle.StyleGuide(quiet=True)
         result = pep8style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0,
