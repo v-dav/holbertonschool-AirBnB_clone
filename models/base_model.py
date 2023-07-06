@@ -30,7 +30,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
-            self.updated_at = self.created_at
+            self.updated_at = datetime.now()
             storage.new(self)
 
     def __str__(self):
@@ -49,8 +49,8 @@ class BaseModel:
         from engine.file_storage import FileStorage
         from __init__ import storage
 
-        storage.save()
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Public instance method that updates and returns
@@ -58,7 +58,7 @@ class BaseModel:
 
         Returns: a dictionary."""
 
-        my_dict = self.__dict__
+        my_dict = self.__dict__.copy()
         my_dict['__class__'] = self.__class__.__name__
         my_dict['created_at'] = self.created_at.isoformat()
         my_dict['updated_at'] = self.updated_at.isoformat()
