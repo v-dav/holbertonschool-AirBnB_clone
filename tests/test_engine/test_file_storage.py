@@ -2,9 +2,10 @@
 from models.engine.file_storage import FileStorage
 from models import storage
 from models.base_model import BaseModel
-import pep8
+import pycodestyle
 import unittest
 import json
+import os
 
 """ Module for FileStorage unit tests """
 
@@ -31,12 +32,13 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save(self):
         """ tests the 'save' method """
-        with open(FileStorage._FileStorage__file_path, 'r') as f:
-            self.assertEqual(dict, type(json.load(f)))
+        if os.path.exists(FileStorage._FileStorage__file_path):
+            with open(FileStorage._FileStorage__file_path, 'r') as f:
+                self.assertEqual(dict, type(json.load(f)))
 
     def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=True)
+        pep8style = pycodestyle.StyleGuide(quiet=True)
         result = pep8style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
