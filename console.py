@@ -40,7 +40,8 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             class_name = args[0]
-            if class_name != BaseModel.__name__ and class_name != User.__name__:
+            if class_name != BaseModel.__name__ and \
+                    class_name != User.__name__:
                 print("** class doesn't exist **")
                 return
             elif len(args) < 2:
@@ -68,7 +69,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if class_name != BaseModel.__name__ and class_name != User.__name__:
+        if class_name != BaseModel.__name__ and \
+                class_name != User.__name__:
             print("** class doesn't exist **")
             return
 
@@ -90,7 +92,8 @@ class HBNBCommand(cmd.Cmd):
                 print(str(obj))
         else:
             class_name = arg.split()[0]
-            if class_name != BaseModel.__name__ and class_name != User.__name__:
+            if class_name != BaseModel.__name__ and \
+                    class_name != User.__name__:
                 print("** class doesn't exist **")
             else:
                 instances = []
@@ -114,7 +117,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = arguments[0]
-        if class_name != BaseModel.__name__ and class_name != User.__name__:
+        if class_name != BaseModel.__name__ and \
+                class_name != User.__name__:
             print("** class doesn't exist **")
             return
 
@@ -146,7 +150,8 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             class_name = arguments[0]
-            if class_name != BaseModel.__name__ and class_name != User.__name__:
+            if class_name != BaseModel.__name__ and \
+                    class_name != User.__name__:
                 print("** class doesn't exist **")
                 return
 
