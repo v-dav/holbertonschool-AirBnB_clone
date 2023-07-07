@@ -31,8 +31,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Prints the string representation of an instance based
-        on its class Name and id. Usage: show BaseModel 13213216-464"""
-
+        on its class Name and id. Usage: show BaseModel 13213216-464
+        """
         args = arg.split()
         if not args:
             print("** class name missing **")
@@ -62,8 +62,6 @@ class HBNBCommand(cmd.Cmd):
 
         Args:
             class_name (str): name of the class we want to create
-
-        Returns: nothing if no class name provided or class doesn't exist
         """
         if not class_name:
             print("** class name  missing **")
@@ -76,6 +74,40 @@ class HBNBCommand(cmd.Cmd):
         obj = BaseModel()
         obj.save()
         print(obj.id)
+
+    def do_destroy(self, arg):
+        """Deletes an instance based on the class name and id.
+        Usage: destroy BaseModel 12345-45643-45645.
+
+        Args:
+            class_name (str): the name of the class
+            id (int): the class id
+        """
+        arguments = arg.split()
+
+        if not arguments:
+            print("** class name  missing **")
+            return
+
+        class_name = arguments[0]
+        if class_name != BaseModel.__name__:
+            print("** class doesn't exist **")
+            return
+
+        if len(arguments) < 2:
+            print("** instance id missing **")
+            return
+
+        id = arguments[1]
+        key = str(class_name) + "." + str(id)
+        objects = storage.all()
+        if key not in objects:
+            print("** no instance found **")
+            return
+        else:
+            del objects[key]
+            storage.save()
+            return
 
 
 if __name__ == '__main__':
