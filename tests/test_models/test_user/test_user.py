@@ -54,7 +54,7 @@ class TestUser(unittest.TestCase):
             self.assertIn(self.user.name, read_data)
 
     def test_userClassAttributes(self):
-        """Tests for user attributes"""
+        """Tests for user attributes Defined"""
         self.user = User()
         self.user.first_name = "Djamal"
         self.user.last_name = "Machin"
@@ -65,6 +65,12 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.last_name, "Machin")
         self.assertEqual(self.user.email, "user1@email.com")
         self.assertEqual(self.user.password, "biche")
+
+        self.user2 = User()
+        self.assertEqual(self.user2.first_name, "")
+        self.assertEqual(self.user2.last_name, "")
+        self.assertEqual(self.user2.email, "")
+        self.assertEqual(self.user2.password, "")
 
 
 if __name__ == '__main__':
