@@ -77,6 +77,21 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
         print(obj.id)
 
+    def do_all(self, arg):
+        "Prints all string representation of all instances"
+
+        objects = storage.all()
+        if not arg:
+            for obj in objects.values():
+                print(str(obj))
+        else:
+            class_name = arg.split()[0]
+            if class_name != BaseModel.__name__:
+                for key, obj in objects.values():
+                    if key.split('.')
+                    print(str(obj))
+        
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
