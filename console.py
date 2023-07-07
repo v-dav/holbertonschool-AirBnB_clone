@@ -76,7 +76,8 @@ class HBNBCommand(cmd.Cmd):
         print(obj.id)
 
     def do_all(self, arg):
-        "Prints all string representation of all instances"
+        """Prints all string representation of all instances
+        """
 
         objects = storage.all()
         if not arg:
@@ -92,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
                     if isinstance(obj, BaseModel):
                         instances.append(str(obj))
                 print(instances)
-        
+
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id.
         Usage: destroy BaseModel 12345-45643-45645.
