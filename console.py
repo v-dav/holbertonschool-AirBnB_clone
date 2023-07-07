@@ -2,14 +2,9 @@
 """Commande line interpreter for the AirBnb Console"""
 
 import cmd
-<<<<<<< HEAD
 import sys
 from models.base_model import BaseModel
 from models import storage
-=======
-from models.base_model import BaseModel
-
->>>>>>> c49dfb46436eeeb7a0e15656d7a14d0afe79affb
 
 class HBNBCommand(cmd.Cmd):
     """Class representing the command interpreter
@@ -33,7 +28,6 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-<<<<<<< HEAD
     def do_show(self, arg):
         """Prints the string representation of an instance"""
         args = arg.split()
@@ -51,8 +45,8 @@ class HBNBCommand(cmd.Cmd):
                 objects = storage.all()
             if key not in objects:
                 print("** no instance found **")
-=======
-    def do_create(self, class_name=None):
+
+def do_create(self, class_name=None):
         """Creates a new instance of BaseModel,
         and saves it to JSON file and prints the id.
         """
@@ -67,7 +61,6 @@ class HBNBCommand(cmd.Cmd):
         obj = BaseModel()
         obj.save()
         print(obj.id)
->>>>>>> c49dfb46436eeeb7a0e15656d7a14d0afe79affb
 
 
 if __name__ == '__main__':
