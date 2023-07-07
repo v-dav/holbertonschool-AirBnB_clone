@@ -4,6 +4,7 @@
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -39,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             class_name = args[0]
-            if class_name != BaseModel.__name__:
+            if class_name != BaseModel.__name__ and class_name != User.__name__:
                 print("** class doesn't exist **")
                 return
             elif len(args) < 2:
@@ -67,11 +68,15 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if class_name and class_name != BaseModel.__name__:
+        if class_name != BaseModel.__name__ and class_name != User.__name__:
             print("** class doesn't exist **")
             return
 
-        obj = BaseModel()
+        if class_name == "BaseModel":
+            obj = BaseModel()
+        elif class_name == "User":
+            obj = User()
+
         obj.save()
         print(obj.id)
 
@@ -85,12 +90,12 @@ class HBNBCommand(cmd.Cmd):
                 print(str(obj))
         else:
             class_name = arg.split()[0]
-            if class_name != "BaseModel":
+            if class_name != BaseModel.__name__ and class_name != User.__name__:
                 print("** class doesn't exist **")
             else:
                 instances = []
                 for obj in objects.values():
-                    if isinstance(obj, BaseModel):
+                    if isinstance(obj, BaseModel) or isinstance(obj, User):
                         instances.append(str(obj))
                 print(instances)
 
@@ -109,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = arguments[0]
-        if class_name != BaseModel.__name__:
+        if class_name != BaseModel.__name__ and class_name != User.__name__:
             print("** class doesn't exist **")
             return
 
@@ -141,7 +146,7 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             class_name = arguments[0]
-            if class_name != BaseModel.__name__:
+            if class_name != BaseModel.__name__ and class_name != User.__name__:
                 print("** class doesn't exist **")
                 return
 
