@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
             class_name (str): name of the class we want to create
         """
         if not class_name:
-            print("** class name  missing **")
+            print("** class name missing **")
             return
 
         if class_name and class_name != BaseModel.__name__:
@@ -105,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
         arguments = arg.split()
 
         if not arguments:
-            print("** class name  missing **")
+            print("** class name missing **")
             return
 
         class_name = arguments[0]
@@ -137,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
         arguments = arg.split()
 
         if not arguments:
-            print("** class name  missing **")
+            print("** class name missing **")
             return
         else:
             class_name = arguments[0]
