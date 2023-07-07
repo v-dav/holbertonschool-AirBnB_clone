@@ -67,10 +67,22 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.password, "biche")
 
         self.user2 = User()
+        """Tests for attrinbutes not defined"""
         self.assertEqual(self.user2.first_name, "")
         self.assertEqual(self.user2.last_name, "")
         self.assertEqual(self.user2.email, "")
         self.assertEqual(self.user2.password, "")
+
+        self.user3 = User()
+        """Tests for attributes as none"""
+        self.user3.first_name = None
+        self.user3.last_name = None
+        self.user3.email = None
+        self.user3.password = None
+        self.assertEqual(self.user3.first_name, None)
+        self.assertEqual(self.user3.last_name, None)
+        self.assertEqual(self.user3.email, None)
+        self.assertEqual(self.user3.password, None)
 
 
 if __name__ == '__main__':
