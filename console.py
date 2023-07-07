@@ -28,25 +28,7 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
-    def do_show(self, arg):
-        """Prints the string representation of an instance"""
-        args = arg.split()
-        if not args:
-            print("** class name missing **")
-        else:
-            class_name = args[0]
-            if class_name not in storage.classes():
-                print("** class doesn't exist ** (ex: $ show MyModel)")
-            elif len(args) < 2:
-                print("** instance id missing **")
-            else:
-                object_id = arg[1]
-                key = class_name + "." + object_id
-                objects = storage.all()
-            if key not in objects:
-                print("** no instance found **")
-
-def do_create(self, class_name=None):
+    def do_create(self, class_name=None):
         """Creates a new instance of BaseModel,
         and saves it to JSON file and prints the id.
         """
@@ -61,6 +43,28 @@ def do_create(self, class_name=None):
         obj = BaseModel()
         obj.save()
         print(obj.id)
+
+    def do_show(self, arg):
+        """Prints the string representation of an instance"""
+        args = arg.split()
+        if not args:
+            print("** class name missing **")
+        else:
+            class_name = args[0]
+            if class_name not in storage.:
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                object_id = args[1]
+                key = class_name + "." + object_id
+                objects = storage.all()
+                if key not in objects:
+                    print("** no instance found **")
+                else:
+                    obj = objects[key]
+                    print(obj)
+
 
 
 if __name__ == '__main__':
