@@ -47,6 +47,15 @@ class FileStorage:
         """Deserializes the JSON file to __objects"""
         from models import base_model
         from models import user
+        from models import amenity
+        from models import city
+        from models import place
+        from models import review
+        from models import state
+
+        class_dict = {"BaseModel": base_model, "Amenity": amenity,
+                      "City": city, "Place": place,
+                      "Review": review, "State": state, "User": user}
 
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding='utf-8') as file:
@@ -54,9 +63,8 @@ class FileStorage:
                 reloaded_objects = json.load(file)
                 for key, value in reloaded_objects.items():
                     class_name = value['__class__']
-                    if class_name == "BaseModel":
-                        cls = getattr(base_model, class_name)
-                    elif class_name == "User":
-                        cls = getattr(user, class_name)
+                    if class_name in class_dict:
+                        cls = getattr(class_dict[class_name], class_name)
+
                     obj = cls(**value)
                     self.__objects[key] = obj
