@@ -2,6 +2,7 @@
 """Commande line interpreter for the AirBnb Console"""
 
 import cmd
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -10,7 +11,8 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
-        """Exit the program"""
+        """Exits the program. Usage: quit
+        """
         return True
 
     def do_EOF(self, arg):
@@ -20,9 +22,26 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """Empty line
+        """Does nothing if no command were given
+        and pressed ENTER
         """
         pass
+
+    def do_create(self, class_name=None):
+        """Creates a new instance of BaseModel,
+        and saves it to JSON file and prints the id.
+        """
+        if not class_name:
+            print("** class name  missing **")
+            return
+
+        if class_name and class_name != "BaseModel":
+            print("** class doesn't exist **")
+            return
+
+        obj = BaseModel()
+        obj.save()
+        print(obj.id)
 
 
 if __name__ == '__main__':
