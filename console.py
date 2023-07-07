@@ -5,6 +5,11 @@ import cmd
 import sys
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models import storage
 
 
@@ -12,6 +17,9 @@ class HBNBCommand(cmd.Cmd):
     """Class representing the command interpreter
     """
     prompt = "(hbnb) "
+    class_dict = {"BaseModel": BaseModel, "Amenity": Amenity,
+                  "City": City, "Place": Place,
+                  "Review": Review, "State": State, "User": User}
 
     def do_quit(self, arg):
         """Exits the program. Usage: quit
@@ -40,23 +48,23 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             class_name = args[0]
-            if class_name != BaseModel.__name__ and \
-                    class_name != User.__name__:
+            if class_name not in self.class_dict:
                 print("** class doesn't exist **")
                 return
-            elif len(args) < 2:
-                print("** instance id missing **")
+
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        else:
+            object_id = args[1]
+            key = str(class_name) + "." + str(object_id)
+            objects = storage.all()
+            if key not in objects:
+                print("** no instance found **")
                 return
             else:
-                object_id = args[1]
-                key = str(class_name) + "." + str(object_id)
-                objects = storage.all()
-                if key not in objects:
-                    print("** no instance found **")
-                    return
-                else:
-                    print(objects[key])
-                    return
+                print(objects[key])
+                return
 
     def do_create(self, class_name=None):
         """Creates a new instance of BaseModel,
@@ -69,16 +77,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
 
-        if class_name != BaseModel.__name__ and \
-                class_name != User.__name__:
+        if class_name not in self.class_dict:
             print("** class doesn't exist **")
             return
 
-        if class_name == "BaseModel":
-            obj = BaseModel()
-        elif class_name == "User":
-            obj = User()
-
+        obj = self.class_dict[class_name]()
         obj.save()
         print(obj.id)
 
@@ -92,14 +95,15 @@ class HBNBCommand(cmd.Cmd):
                 print(str(obj))
         else:
             class_name = arg.split()[0]
-            if class_name != BaseModel.__name__ and \
-                    class_name != User.__name__:
+            if class_name not in self.class_dict:
                 print("** class doesn't exist **")
+                return
             else:
                 instances = []
                 for obj in objects.values():
-                    if isinstance(obj, BaseModel) or isinstance(obj, User):
-                        instances.append(str(obj))
+                    for value in self.class_dict.values():
+                        if isinstance(obj, value):
+                            instances.append(str(obj))
                 print(instances)
 
     def do_destroy(self, arg):
@@ -117,8 +121,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = arguments[0]
-        if class_name != BaseModel.__name__ and \
-                class_name != User.__name__:
+        if class_name not in self.class_dict:
             print("** class doesn't exist **")
             return
 
@@ -150,8 +153,7 @@ class HBNBCommand(cmd.Cmd):
             return
         else:
             class_name = arguments[0]
-            if class_name != BaseModel.__name__ and \
-                    class_name != User.__name__:
+            if class_name not in self.class_dict:
                 print("** class doesn't exist **")
                 return
 
