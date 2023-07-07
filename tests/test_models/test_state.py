@@ -57,11 +57,9 @@ class TestState(unittest.TestCase):
     def test_StateClassAttributes(self):
         """Tests for State attributes Defined"""
 
-        self.State = State()
-        """Tests for attributes as none"""
-        self.State.name = None
-
-        self.assertEqual(self.State.name, None)
+        def test_class(self):
+            classe = State()
+            self.assertEqual(classe.name, "")
 
 
 if __name__ == '__main__':
