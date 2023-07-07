@@ -77,28 +77,6 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
         print(obj.id)
 
-    def do_show(self, arg):
-        """Prints the string representation of an instance"""
-        args = arg.split()
-        if not args:
-            print("** class name missing **")
-        else:
-            class_name = args[0]
-            if class_name not in storage.:
-                print("** class doesn't exist **")
-            elif len(args) < 2:
-                print("** instance id missing **")
-            else:
-                object_id = args[1]
-                key = class_name + "." + object_id
-                objects = storage.all()
-                if key not in objects:
-                    print("** no instance found **")
-                else:
-                    obj = objects[key]
-                    print(obj)
-
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
