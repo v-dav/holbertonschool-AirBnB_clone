@@ -6,6 +6,7 @@ import sys
 from models.base_model import BaseModel
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """Class representing the command interpreter
     """
@@ -46,7 +47,7 @@ class HBNBCommand(cmd.Cmd):
             if key not in objects:
                 print("** no instance found **")
 
-def do_create(self, class_name=None):
+    def do_create(self, class_name=None):
         """Creates a new instance of BaseModel,
         and saves it to JSON file and prints the id.
         """
