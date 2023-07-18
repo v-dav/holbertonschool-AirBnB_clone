@@ -5,8 +5,7 @@
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	position: relative;
 }
 
 button {
@@ -17,7 +16,9 @@ button {
 	width: 20%;
 	border-style: none;
 	border-radius: 4px;
-	margin-right: 30px;
+	position: absolute;
+	right: 30px;
+	align-self: center;
 }
 
 button:hover {
@@ -31,11 +32,6 @@ button:hover {
 
 .locations {
 	border-right: 1px solid #DDDDDD;
-	padding-left: 50px
-}
-
-.amenities {
-	padding-right: 120px;
 }
 
 
@@ -43,6 +39,7 @@ h3 {
 	font-weight: 600;
 	padding: 0;
 	margin-bottom: 0;
+	margin-left: 50px;
 }
 
 h4 {
@@ -50,4 +47,5 @@ h4 {
 	font-size: 14px;
 	padding: 0;
 	margin-top: 0;
+	margin-left: 50px;
 }
