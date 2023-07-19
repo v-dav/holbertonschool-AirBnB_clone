@@ -48,10 +48,40 @@ article h2 {
 	border-bottom: 1px solid #DDDDDD;
 	display: flex;
 	justify-content: center;
-	align-items: flex-end;
 }
 
 .max_guest, .number_rooms, .number_bathrooms {
 	width: 100px;
-	padding-bottom: 5px;
+	height: 90%;
+	display: flex;
+	align-items: flex-end;
+}
+
+.max_guest {
+	background-image: url("../images/icon_group.png");
+	background-repeat: no-repeat;
+	background-position-y: 10px;
+	background-position-x: 5px;
+	background-size: 50%;
+}
+
+.number_rooms {
+	background-image: url("../images/icon_bed.png");
+	background-repeat: no-repeat;
+	background-position-y: 10px;
+	background-position-x: 10px;
+	background-size: 50%;
+}
+
+.number_bathrooms {
+	background-image: url("../images/icon_bath.png");
+	background-repeat: no-repeat;
+	background-position-y: 10px;
+	background-position-x: 10px;
+	background-size: 50%;
+}
+
+.user {
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
