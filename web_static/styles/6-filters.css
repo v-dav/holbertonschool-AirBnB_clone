@@ -25,7 +25,8 @@ button:hover {
 	opacity: 90%;
 }
 
-.amenities, .locations {
+.filters .amenities,
+.filters .locations {
 	height: 100%;
 	width: 25%;
 }
@@ -35,7 +36,7 @@ button:hover {
 }
 
 
-h3 {
+.filters h3 {
 	font-weight: 600;
 	padding: 0;
 	margin-bottom: 0;
