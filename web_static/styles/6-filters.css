@@ -40,15 +40,15 @@ button:hover {
 	font-weight: 600;
 	padding: 0;
 	margin-bottom: 0;
-	margin-left: 50px;
+	margin-left: 25px;
 }
 
-h4 {
+.filters h4 {
 	font-weight: 400;
 	font-size: 14px;
 	padding: 0;
 	margin-top: 0;
-	margin-left: 50px;
+	margin-left: 25px;
 }
 
 .popover {
@@ -57,6 +57,11 @@ h4 {
 	border-radius: 4px;
 	display: none;
 	padding-bottom: 25px;
+	padding-left: 5px;
+}
+
+.amenities .popover {
+	padding-left: 15px;
 }
 
 ul h2 {
@@ -79,4 +84,8 @@ ul {
 
 .locations .popover li {
 	margin: 10px 10px;
+}
+
+.filters .locations .popover ul {
+	padding-left: 10px;
 }
